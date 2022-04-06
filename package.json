@@ -1,11 +1,13 @@
 {
-  "name": "Javascript",
+  "name": "javascript",
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/brunovcg/AdvancedJavascript.git",
   "author": "Bruno Gouveia <brunovcg@gmail.com>",
   "license": "MIT",
+  "type": "module",
   "dependencies": {
+    "babel": "^6.23.0",
     "lodash": "^4.17.21"
   }
 }
