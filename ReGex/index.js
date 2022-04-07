@@ -5,6 +5,7 @@
 //!   \  - caractere de escape
 //! {n,m} - quantidade de vezes varivael
 //!  {n} - quantidade especifica
+//!   .  - qualquer caractere menos quebra de espace
 
 //! ------- FUNÇÕES ------- (Métodos String)
 //!     search - Retorna o índice ou -1 caso não haja
@@ -17,8 +18,7 @@
 //!    + (obg)  1 ou n
 //!    ? (opc)  0 ou 1
 
-
-const printAula = 3;
+const printAula = 4;
 
 // ? ------------------------- AULA1 ------------------
 //* exec e test
@@ -34,16 +34,15 @@ const regExp1 = /(poucos|são)/gi;
 
 const found = regExp1.exec(texto);
 
-if (printAula===1){
-  console.log(found)
-
+if (printAula === 1) {
+  console.log(found);
 }
 
 // ? --------------------------- AULA2 ---------------------------
 //* replace
 const regExp2 = /são|que/gi;
 
-if ((printAula === 2)) {
+if (printAula === 2) {
   console.log(texto.match(regExp2));
   console.log("1------x---------");
   // usando grupo
@@ -62,8 +61,7 @@ if ((printAula === 2)) {
 //  + acha quuuuuue - quantos u forem na position, já do seguno u não pega
 //. ? deixa o último u opcional
 //   . é um meta caracter em JS, para ser ponto literal tem que usar \
-const regExp3 = /qu+eu?/gi
-
+const regExp3 = /qu+eu?/gi;
 
 const array = [
   "beuno.jpg",
@@ -71,29 +69,42 @@ const array = [
   "errado.png",
   "gouvei.JPEG",
   "campos.jpeg",
-  
-]
+];
 
-const regExp4 = /\.jpeg|\.jpg/gi
+const regExp4 = /\.jpeg|\.jpg/gi;
 //ou
-const regExp5 = /\.(jpeg|jpg)/gi
+const regExp5 = /\.(jpeg|jpg)/gi;
 //ou
-const regExp6 = /\.(jpe?g)/gi
+const regExp6 = /\.(jpe?g)/gi;
 //ou
-const regExp7 = /\.jpe{0,}g/gi
+const regExp7 = /\.jpe{0,}g/gi;
+//ou
+const regExp8 = /\.((jp|JP)(e|E)?(g|G))/g
 
+if (printAula === 3) {
+  console.log(texto.match(regExp3));
 
-if (printAula===3) {
+  for (const n of array) {
+    //teste alterar o regExp!
+    const valido = n.match(regExp8);
 
-  console.log(texto.match(regExp3))
+    if (!valido) {
+      continue;
+    }
 
-  for (const n of array){
-
-    const valido = n.match(regExp7)
-    
-    if (!valido) {continue};
-
-    console.log(n, valido)
-
+    console.log(n, valido);
   }
-} 
+}
+
+// ? ---------------------------- AULA4 ---------------------------
+//* Versão greedy e não greedy
+
+const html = "<p>Olá</p> <p>Olá de novo</p>"
+
+
+if (printAula===4){
+
+console.log(html.match(/<.+>.+<\/.+>/g)) // greedy
+console.log(html.match(/<.+?>.+?<\/.+?>/g)) // não greedy
+
+}
