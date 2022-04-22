@@ -60,11 +60,8 @@ if (printAula === 2) {
   // to colocando aspas aqui, substituindo ele por ele com aspas
   console.log(texto.replace(/(que)/gi, "'$1'"));
 
-
   console.log("2------x---------");
 
-
-  
   console.log(texto.replace(/(que)|(isso)/gi, " zzz$1zzz xxx$2xxx "));
   console.log("3------x---------");
 
@@ -240,25 +237,70 @@ class="teste teste">
   Olá mundo
 </p> <p>Olá mundo</p> <div>Sou a div</div>`;
 
+  //.*? => qualquer coisa greedy, não pega quebra de linha
 
-//.*? => qualquer coisa greedy, não pega quebra de linha
+  console.log(html2.match(/<(\w+).*?>.+?<\/\1>/g));
 
-console.log(html2.match(/<(\w+).*?>.+?<\/\1>/g))
+  // gambiarra que faz pegar HTML com quebra de linha
+  console.log(html2.match(/<(\w+)([\s\S]*?)>([\s\S]*?)<\/\1>/g));
 
-// gambiarra que faz pegar HTML com quebra de linha
-console.log(html2.match(/<(\w+)([\s\S]*?)>([\s\S]*?)<\/\1>/g))
+  // fazendo um coisa complexa
 
-// fazendo um coisa complexa
-
-console.log(html2.replace(/(<(\w+)(?:[\s\S]*?)>)([\s\S]*?)(<\/\2>)/g, '$1 HAHA $3 HAHA $4'));
-
+  console.log(
+    html2.replace(
+      /(<(\w+)(?:[\s\S]*?)>)([\s\S]*?)(<\/\2>)/g,
+      "$1 HAHA $3 HAHA $4"
+    )
+  );
 }
-
 
 // ? ---------------------------- AULA9 ---------------------------
 
 if (printAula === 9) {
+  const lookahead = `
+ONLINE  192.168.0.1 ABCDEF inactive
+OFFLINE  192.168.0.2 ABCDEF active
+ONLINE  192.168.0.3 ABCDEF active
+ONLINE  192.168.0.4 ABCDEF active
+OFFLINE  192.168.0.5 ABCDEF active
+OFFLINE  192.168.0.6 ABCDEF inactive
+`;
+
+  console.log(lookahead);
+
+  // console.log(lookahead.match(/.+[^in]active$/gim))
+
+  //? POSITIVE LOOK AHEAD
+
+  //Positive look ahead (frases que tem active)
+  console.log(lookahead.match(/.+(?=[^in]active)/gim));
+
+  //Positive look ahead (frases que tem inactive)
+  console.log(lookahead.match(/.+(?=inactive)/gim));
+
+  //? NEGATIVE LOOK AHEAD
+
+  //Negative look ahead (frases que não tem active)
+  console.log(lookahead.match(/^(?!.+[^in]active).+$/gim));
+
+  //Negative look ahead (frases que não tem inactive)
+  console.log(lookahead.match(/^(?!.+inactive).+$/gim));
+
+  //? POSITIVE LOOK BEHIND
+
+  //Positive look behind (frases que começam com ONLINE)
+  console.log(lookahead.match(/.+(?<=ONLINE\s+)\S+.*/gim));
+
+  //? NEGATIVE LOOK BEHIND
+  // Negative lookbehind (Frases que NÃO começam com ONLINE)
+  console.log(lookahead.match(/^.+(?<!ONLINE.+)$/gim));
 
 
-
+  const cpf9 = `089.234.897-90
+  111.111.111-11
+  234.553.244-44
+  `
+  console.log(cpf9.match(/^(?!^(\d)\1{2}\.\1{3}\.\1{3}-\1{2}$)\d{3}\.\d{3}\.\d{3}\-\d{2}$/gm));
 }
+
+
