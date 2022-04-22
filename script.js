@@ -1,49 +1,49 @@
-// let div = document.getElementById("esse");
-// let h2 = document.createElement("h2");
-
-// let paragrafo = document.createElement("p");
-// paragrafo.setAttribute("id", "p-1");
-
-// div.appendChild(h2);
-// div.setAttribute("class", "classe-1");
-
-// let age = 20;
-
-// div.appendChild(paragrafo);
-
-// let div2 = document.createElement("div");
-
-// div.appendChild(div2)
+let arr = [1,2,3,4,5];
 
 
-// paragrafo.innerHTML = "tem ";
-// paragrafo.innerHTML += age;
+// ---------- FOR EACH
 
-// console.log(div.length);
+function callback(item){
+  console.log(item)
+}
 
-// const color = "red";
-
-// switch (color) {
-//   case "red":
-//     console.log(`color is ${color}`);
-//     break;
-//   case "blue":
-//     console.log(`color is ${color}`);
-//     break;
-//   default:
-//     console.log(`color is ${color}`);
-// }
-
-// const arr = ["a", "b", "c", "d"];
-
-// for (let word of arr) {
-//   console.log(word);
-// }
-// // a b c d - show data
-
-// for (let word in arr) {
-//   console.log(word);
-// }
-// // 0 1 2 3 - show index
+function callback2(item){
+  console.log(item+1)
+}
 
 
+
+function myForEach (array, funcao){
+
+  for (let i=0; i<array.length; i++){
+
+    funcao(array[i])
+  }
+
+}
+
+// -------------MAP------
+
+function mapCALLBACK (item) {
+ return item *2
+}
+
+
+let getMAP = arr.map(item=>mapCALLBACK(item))
+//ou
+let getMAP2 = arr.map(item=>item*2)
+
+
+function myMAP (array, callback) {
+  let result = []
+  for (let i=0; i<array.length; i++){
+
+    result.push(callback(array[i]))
+
+  }
+  return result
+}
+
+console.log(getMAP)
+console.log(getMAP2)
+console.log(myMAP(arr, mapCALLBACK))

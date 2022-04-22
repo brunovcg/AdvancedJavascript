@@ -55,19 +55,19 @@ const getSeparatedValues = (valor) => {
 
   if (valorString.length === 1) {
     response.unit = valor;
-    return response;
+   
   } else if (valorString.length === 2 && valor < 20) {
     response.oneToNineteen = Number(valorString);
-    return response;
+
   } else if (valorString.length === 2) {
     response.unit = Number(valorString[1]);
     response.ten = Number(valorString[0]);
-    return response;
+    
   } else if (valorString.length === 3) {
     response.tenUnit = Number(valorString[1] + valorString[2]);
-    response.cent = Number(valorString[0]);
-    return response;
+    response.cent = Number(valorString[0]); 
   }
+  return response;
 };
 
 const give1to99names = (valor) => {

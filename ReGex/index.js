@@ -1,14 +1,19 @@
 //!       g       Global (encontra todas as ocorrências)
 //!       i       insensitive (não checa letras upper x lowercase)
+//!       m       multiline (checa por linha)
 //!      ( )      grupos
+//!       ?:     não conta o grupo como retrovisor
 //!       |       ou
 //!       \       caractere de escape
-//!   {min,max}     quantidade de vezes varivael
+//!   {min,max}   quantidade de vezes varivael
 //!      {n}      quantidade especifica
 //!       .       qualquer caractere menos quebra de espace
 //!      []       Conjunto
-//!       ^       usado para negar
+//!      [^]      usado para negar (tudo menos isso) quando num conjunto
+//!       ^       começa com (inicio da string)
+//!       $       termina com (inicio da string)
 //!    min-max       range
+//!    $1 $2 $3   retrovisores
 
 //! ------- FUNÇÕES ------- (Métodos String)
 //!     search - Retorna o índice ou -1 caso não haja
@@ -21,7 +26,10 @@
 //!    + (obg)  1 ou n
 //!    ? (opc)  0 ou 1
 
-const printAula = 5;
+//* List of unicode characters:  https://en.wikipedia.org/wiki/List_of_Unicode_characters
+//* Documentation for Regex for JS: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Regular_Expressions
+
+const printAula = 9;
 
 // ? ------------------------- AULA1 ------------------
 //* exec e test
@@ -49,9 +57,15 @@ if (printAula === 2) {
   console.log(texto.match(regExp2));
   console.log("1------x---------");
   // usando grupo
+  // to colocando aspas aqui, substituindo ele por ele com aspas
   console.log(texto.replace(/(que)/gi, "'$1'"));
+
+
   console.log("2------x---------");
-  console.log(texto.replace(/(que)(isso)/gi, "'$1 - $2'"));
+
+
+  
+  console.log(texto.replace(/(que)|(isso)/gi, " zzz$1zzz xxx$2xxx "));
   console.log("3------x---------");
 
   // usando callback
@@ -82,7 +96,7 @@ const regExp6 = /\.(jpe?g)/gi;
 //ou
 const regExp7 = /\.jpe{0,}g/gi;
 //ou
-const regExp8 = /\.((jp|JP)(e|E)?(g|G))/g
+const regExp8 = /\.((jp|JP)(e|E)?(g|G))/g;
 
 if (printAula === 3) {
   console.log(texto.match(regExp3));
@@ -102,58 +116,149 @@ if (printAula === 3) {
 // ? ---------------------------- AULA4 ---------------------------
 //* Versão greedy e não greedy
 
-const html = "<p>Olá</p> <p>Olá de novo</p>"
+// greedy = é padrão
+// não greedy = usando o ?, vai selecionar o mínimo possível
 
+const html = "<p>Olá</p> <p>Olá de novo</p>";
 
-if (printAula===4){
-
-console.log(html.match(/<.+>.+<\/.+>/g)) // greedy
-console.log(html.match(/<.+?>.+?<\/.+?>/g)) // não greedy
-
+if (printAula === 4) {
+  console.log(html.match(/<.+>.+<\/.+>/g)); // greedy
+  console.log(html.match(/<.+?>.+?<\/.+?>/g)); // não greedy
 }
 
 // ? ---------------------------- AULA5 ---------------------------
 //* conjuntos e ranges
 
-// [abc] -> Conjunto 
+// [abc] -> Conjunto
 // [^abc]-> negacao
 
-const alfa = "abcdefghijklmnopqrstuvwxyz 0123456789 @ ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-const alfa2 = "zabcdefghijklmnopqrstuvwxy 0123456789 @®; ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-const bruno = "bruno"
+const alfa =
+  "abcdefghijklmnopqrstuvwxyz 0123456789 @ ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const alfa2 =
+  "zabcdefghijklmnopqrstuvwxy 0123456789 @®; ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const bruno = "bruno";
 
-if (printAula ===5){
-
-  console.log(alfa)
+if (printAula === 5) {
+  console.log(alfa);
   // acha e divide num array cada um
-  console.log(alfa.match(/[abc]/g))
+  console.log(alfa.match(/[abc]/g));
   //acha em sequencia
-  console.log(alfa.match(/[abc123]+/g))
+  console.log(alfa.match(/[abc123]+/g));
   //negando ^
-  console.log(alfa.match(/[^abc123]/g)) 
-
+  console.log(alfa.match(/[^abc123]/g));
 
   //range junto
-  console.log(alfa.match(/[0-9]+/g))
-  console.log(alfa.match(/[a-z]+/g))
+  console.log(alfa.match(/[0-9]+/g));
+  console.log(alfa.match(/[a-z]+/g));
   //range separado array
-  console.log(alfa.match(/[0-9]/g))
-  console.log(alfa.match(/[a-z]/g))
-  console.log(alfa2.match(/[a-z]/g))
-  console.log(bruno.match(/[a-z]/g))
+  console.log(alfa.match(/[0-9]/g));
+  console.log(alfa.match(/[a-z]/g));
+  console.log(alfa2.match(/[a-z]/g));
+  console.log(bruno.match(/[a-z]/g));
 
   // varios range
-  console.log(alfa.match(/[a-zA-Z0-9]+/g))
-  console.log(alfa.match(/[a-zA-Z0-9]/g))
+  console.log(alfa.match(/[a-zA-Z0-9]+/g));
+  console.log(alfa.match(/[a-zA-Z0-9]/g));
 
-  console.log(alfa.match(/[^a-zA-Z0-9]+/g)) //negando
-
+  console.log(alfa.match(/[^a-zA-Z0-9]+/g)); //negando
 
   //  \w = a-zA-Z0-9
-  console.log(alfa.match(/[\w]/g)) 
-  console.log(alfa.match(/[\u0040-\u0041]+/g)) // unicode
+  console.log(alfa.match(/[\w]/g));
+  console.log(alfa.match(/[\u0040-\u0041]+/g)); // unicode
+}
+
+// ? ---------------------------- AULA6 ---------------------------
+
+if (printAula === 6) {
+  const cpf = `
+  Os CPFs são:
+  
+  254.224.877-45
+  
+  333.333.871-22
+  
+  124.333.423-22
+  
+  333.333.471-22
+  `;
+
+  const IPs = `
+  0.0.0.0
+
+  192.168.0.25
+
+  10.01.5.12
+
+  2555.255.255.255
+  `;
+
+  console.log(cpf.match(/[0-9]{3}\.[0-9]{3}\.[0-9]{3}\-[0-9]{2}/g));
+
+  //ou
+
+  console.log(cpf.match(/\d{3}\.\d{3}\.\d{3}\-\d{2}/g));
+
+  // ou
+
+  console.log(cpf.match(/(\d{3}\.){2}\d{3}\-\d{2}/g));
+
+  console.log("---- problema 2------");
+
+  const ipRegExp = /^(25[0-5]|2[0-4][0-9]|1\d{2}|[1-9]\d|\d)(\.)/g;
+
+  const ipRegExp2 =
+    /((25[0-5]|2[0-4][0-9]|1\d{2}|[1-9]\d|\d)(\.)){3}(25[0-5]|2[0-4][0-9]|1\d{2}|[1-9]\d|\d)/g;
+  // for (let i = 0; i < 300; i++){
+  //   const ip = `${i}.${i}.${i}.${i}`
+  //   console.log(ip, ip.match(ipRegExp))
+  // }
+
+  console.log(IPs.match(ipRegExp2));
+}
+
+// ? ---------------------------- AULA7 ---------------------------
+
+if (printAula === 7) {
+  const cpf7 = `254.224.877-45
+  215.978.456-12
+  047.258.369-96
+  963.987.32a.00`;
+
+  const cpfRegExp = /^(\d{3}\.){2}\d{3}\-\d{2}$/gm;
+
+  console.log(cpf7.match(cpfRegExp)); // vai dar null se não tiver o m- multiline por que a string tem que ser igual a isso
+}
+
+// ? ---------------------------- AULA8 ---------------------------
+
+// $1 $2 $3 -. retrovisores, variaveis ex: html
+
+if (printAula === 8) {
+  const html2 = `<p 
+data-teste='teste' 
+class="teste teste">
+  Olá mundo
+</p> <p>Olá mundo</p> <div>Sou a div</div>`;
+
+
+//.*? => qualquer coisa greedy, não pega quebra de linha
+
+console.log(html2.match(/<(\w+).*?>.+?<\/\1>/g))
+
+// gambiarra que faz pegar HTML com quebra de linha
+console.log(html2.match(/<(\w+)([\s\S]*?)>([\s\S]*?)<\/\1>/g))
+
+// fazendo um coisa complexa
+
+console.log(html2.replace(/(<(\w+)(?:[\s\S]*?)>)([\s\S]*?)(<\/\2>)/g, '$1 HAHA $3 HAHA $4'));
+
+}
+
+
+// ? ---------------------------- AULA9 ---------------------------
+
+if (printAula === 9) {
 
 
 
 }
-
