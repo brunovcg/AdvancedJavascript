@@ -1,31 +1,31 @@
-//!       g       Global (encontra todas as ocorrências)
-//!       i       insensitive (não checa letras upper x lowercase)
-//!       m       multiline (checa por linha)
-//!      ( )      grupos
-//!       ?:     não conta o grupo como retrovisor
-//!       |       ou
-//!       \       caractere de escape
-//!   {min,max}   quantidade de vezes varivael
-//!      {n}      quantidade especifica
-//!       .       qualquer caractere menos quebra de espace
-//!      []       Conjunto
-//!      [^]      usado para negar (tudo menos isso) quando num conjunto
-//!       ^       começa com (inicio da string)
-//!       $       termina com (inicio da string)
-//!    min-max       range
-//!    $1 $2 $3   retrovisores
-
-//! ------- FUNÇÕES ------- (Métodos String)
-//!     search - Retorna o índice ou -1 caso não haja
-//!     split - divide o texto usando regex
-//!     match - se usada com a flag g, retora um array com os achadossem o g volta um array que nem exec
-//!     replace -  substitui o primeiro param pelo segundo
-
-//! ------- QUANTIFICADORES --------
-//!    * (opc)  0 ou n significa {1,}
-//!    + (obg)  1 ou n
-//!    ? (opc)  0 ou 1
-
+//!             g       Global (encontra todas as ocorrências)
+//!             i       insensitive (não checa letras upper x lowercase)
+//!             m       multiline (checa por linha)
+//!            ( )      grupos
+//!             ?:      não conta o grupo como retrovisor
+//!             |       ou
+//!             \       caractere de escape
+//!         {min,max}   quantidade de vezes varivael
+//!            {n}      quantidade especifica
+//!             .       qualquer caractere menos quebra de espace
+//!            [ ]       Conjunto
+//!            [^]      usado para negar (tudo menos isso) quando num conjunto
+//!             ^       começa com (inicio da string)
+//!             $       termina com (inicio da string)
+//!          min-max    range
+//!         $1 $2 $3    retrovisores
+      
+//?       ------- FUNÇÕES ------- (Métodos String)
+//!           search    Retorna o índice ou -1 caso não haja
+//!           split     divide o texto usando regex
+//!           match     se usada com a flag g, retora um array com os achadossem o g volta um array que nem exec
+//!           replace   substitui o primeiro param pelo segundo
+      
+//?       ------- QUANTIFICADORES --------
+//!             *       (opc) 0 ou n significa {1,}
+//!             +       (obg) 1 ou n
+//!             ?       (opc) 0 ou 1
+      
 //* List of unicode characters:  https://en.wikipedia.org/wiki/List_of_Unicode_characters
 //* Documentation for Regex for JS: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Regular_Expressions
 
@@ -302,5 +302,4 @@ OFFLINE  192.168.0.6 ABCDEF inactive
   `
   console.log(cpf9.match(/^(?!^(\d)\1{2}\.\1{3}\.\1{3}-\1{2}$)\d{3}\.\d{3}\.\d{3}\-\d{2}$/gm));
 }
-
 
