@@ -19,3 +19,14 @@ const obj = {
 for (const word of obj){
     console.log(word)
 }
+
+
+
+var str = 'Treina';
+
+var strIter = str[Symbol.iterator]();
+
+console.log(strIter)
+
+console.log(strIter.next().value); 
+console.log(strIter.next().value); 

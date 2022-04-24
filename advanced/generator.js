@@ -14,6 +14,9 @@ function* generatorFunction(){
 
 const generatorObject = generatorFunction()
 
+console.log(generatorObject)
+
 for (const word of generatorObject){
     console.log(word)
 }
+

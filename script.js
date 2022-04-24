@@ -1,6 +1,11 @@
-let a = [1,2,3,4,5,6]
-let b =[]
-for (var i = 0; i < a.length; i++) {
-
-  b.push(a[i])
+function* foo() {
+  var index = 0;
+  while (index <= 2)
+    yield index++;
 }
+
+var iterator = foo();
+console.log(iterator.next()); // { value: 0, done: false }
+console.log(iterator.next()); // { value: 1, done: false }
+console.log(iterator.next()); // { value: 2, done: false }
+console.log(iterator.next()); // { value: undefined, done: true }
