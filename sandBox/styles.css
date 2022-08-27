@@ -3,3 +3,52 @@
   font-weight: bold;
   font-size: 16px;
 }
+
+.parent{
+  width: 400px;
+  display: grid;
+  grid-template-columns: repeat(80px, 4);
+  grid-template-rows: repeat(80px, 4);
+  border: red 1px solid;
+  grid-template-areas: 
+  "one one one one"
+  "two two three three" 
+  "four four four four"
+  "five five six six"
+  "seven seven . ."
+}
+
+.one{
+  background: red;
+  grid-area: one;
+}
+
+.two{
+  background: green;
+  grid-area: two;
+}
+
+.three{
+  background: yellow;
+  grid-area: three;
+}
+
+.four{
+  background: pink;
+  grid-area: four;
+}
+
+.five{
+  background: orange;
+  grid-area: five;
+}
+
+.six{
+  background: brown;
+  grid-area: six;
+}
+
+.seven {
+  background: orchid;
+  grid-area: seven;
+}

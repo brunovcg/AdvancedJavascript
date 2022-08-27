@@ -8,8 +8,8 @@
 //!         {min,max}   quantidade de vezes varivael
 //!            {n}      quantidade especifica
 //!             .       qualquer caractere menos quebra de espace
-//!            [ ]       Conjunto
-//!            [^]      usado para negar (tudo menos isso) quando num conjunto
+//!            [ ]      Conjunto
+//!            [^]      usado para negar (tudo menos isso) quando conjunto
 //!             ^       começa com (inicio da string)
 //!             $       termina com (inicio da string)
 //!          min-max    range

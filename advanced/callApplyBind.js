@@ -6,7 +6,7 @@ const article = {
 };
 
 function print() {
-  console.log(`${this.title} em ${this.language}.`);
+  console.log(`${this?.title} em ${this?.language}.`); 
 }
 
 print();
@@ -51,7 +51,7 @@ const article2 = {
 		console.log(this.title);
 	},
 	arrowFunction: () => {
-		console.log(this.title);
+		console.log(this?.title);
 	}
 }
 

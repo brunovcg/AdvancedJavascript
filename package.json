@@ -9,6 +9,7 @@
   "dependencies": {
     "axios": "^0.27.2",
     "babel": "^6.23.0",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "redux": "^4.2.0"
   }
 }
