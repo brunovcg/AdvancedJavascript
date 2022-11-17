@@ -8,7 +8,7 @@ const person = {
   },
   // arrow function não aceita this
   sayMyName2: () => {
-    console.log(`my name 2 is ${this.name}`);
+    console.log(`my name 2 is ${this?.name}`);
   },
 };
 
@@ -17,11 +17,11 @@ person.sayMyName2();
 
 //2 regra - Explicite Bindind
 
-function sayMyName() {
-  console.log(`my name is ${this.name}`);
+function sayMyName3() {
+  console.log(`my name is ${this?.name}`);
 }
 
-sayMyName.call(person);
+sayMyName3.call(person);
 
 // 3 regra - New Binding
 
@@ -37,7 +37,7 @@ console.log(p1.name, p2.name);
 
 // 4 regra - Default Binding
 globalThis.name = "Superman!";
-sayMyName();
+sayMyName3();
 
 /*
 Prioridades

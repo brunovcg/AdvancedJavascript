@@ -76,3 +76,39 @@ class  Article {
 }
 
 new  Article() // Descomplicando call, apply e bind em JavaScript
+
+
+
+
+
+
+
+function data(param1) {
+  return "O livro é " + this.title + " e tem " + this.pages + " páginas " + param1;
+}
+
+let book1 = {
+  title: "E o vento levou",
+  pages: 100,
+};
+
+let book2 = {
+  title: "Poderoso",
+  pages: 200,
+};
+
+
+console.log(data.call(book1, "bruno"))
+console.log(data.call(book2, "brenda"))
+console.log(data.apply(book1, ["bruno"]))
+console.log(data.apply(book2, ["brenda"]))
+
+//! bind cria uma nova função e depois invoca
+
+let binded = data.bind(book1, "bruno")
+let call = data.call(book1, "bruno called")
+
+console.log(binded())
+
+//? isso vai dar erro
+console.log(call())

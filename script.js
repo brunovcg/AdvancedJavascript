@@ -1,13 +1,5 @@
-function* test (i) {
+function one (a){
 
- let b = i
-
-  yield b
-
-  yield b + 1
+  return 'aaasdfsd'
+  
 }
-
-const a = test(10)
-console.log(a.next().value)
-
-console.log(a.next().value)
